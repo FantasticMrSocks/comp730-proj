@@ -1,5 +1,5 @@
 
-public class item {
+public class Item {
 
 	// class data
     public String name;
