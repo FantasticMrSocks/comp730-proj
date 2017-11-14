@@ -1,5 +1,5 @@
 
-public class Monster extends CharacterAbstract{
+public class Monster extends Character{
 
 	public Monster(String n, int h, int s) {
 		this.setName(n);

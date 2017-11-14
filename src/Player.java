@@ -1,4 +1,4 @@
-public class Player  extends CharacterAbstract{	
+public class Player  extends Character{	
 	
 	public Player(String n, int h, int s) {
 		this.setName(n);

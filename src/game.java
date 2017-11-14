@@ -9,7 +9,7 @@ public class game {
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command = "";
-		System.out.println ("Please enter a command");
+		System.out.print ("Please enter a command: ");
 		while (!exit) {
 			command = reader.next();
 			if (command.equals("quit")) {

@@ -1,14 +1,14 @@
-public class CharacterAbstract {
+public class Character {
 	private String name;	
 	private int hp;
 	private int str;
 	//private int id;
 	//private int lv;
 	
-	public CharacterAbstract() {
+	public Character() {
 		
 	}	
-	public CharacterAbstract(String n, int h, int s) {
+	public Character(String n, int h, int s) {
 		name = n;
 		hp   = h;
 		str  = s;
@@ -33,13 +33,13 @@ public class CharacterAbstract {
 	}
 	
 	// This function will update the HP to the target character after being hit
-	public void attack(CharacterAbstract c) {
+	public void attack(Character c) {
 		c.setHP(c.getHP()- this.getSTR()); // the new HP will be store
 		System.out.println(this.getName()+" attack "+c.getName()+", "+c.getName()+" is received "+this.getSTR()+ " damages");
 	}
 	
 	// This function will let the current character and the opponent attack each other until one of them dies
-	public CharacterAbstract battle(CharacterAbstract m) {
+	public Character battle(Character m) {
 		while(true) {
 			this.attack(m); 
 			if (m.death()) {  // If the HP of the opponent <= 0
