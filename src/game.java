@@ -10,6 +10,9 @@ public class game {
 			if (command.equals("quit")) {
 				exit = true;
 			}
+			if (command.equals("search")) {
+				//search room
+			}
 			else {
 				System.out.println("unknown command");
 			}
