@@ -5,7 +5,8 @@ public class game {
 		// Use case - Player attacks monster
 		Player p = new Player("The Lord",100,10);
 		Monster m = new Monster("Spider",50,5);		
-		p.battle(m);
+		p.battle(m); // "The Lord" attacks "Spider" 
+		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command = "";
@@ -18,7 +19,5 @@ public class game {
 				System.out.println("unknown command");
 			}
 		}
-		
-
 	}
 }
