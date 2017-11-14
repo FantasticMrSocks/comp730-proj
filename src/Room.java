@@ -8,16 +8,16 @@ public class Room {
 	public String description;
 	
 	public String inspect() {
-		String result = "";
+		String result = "Current room: " + name + "\n" + description;
 		
 		for (Exit exit : exits) {
 			if (exit.visible) {
-				result = result.concat(exit.getDescription() + "\n");
+				result = result.concat("\n" + exit.getDescription());
 			}
 		}
 		
 		for (Inspectable object : objects) {
-			result = result.concat(object.inspect());
+			result = result.concat("\n" + object.inspect());
 		}
 		
 		return result;

@@ -1,5 +1,9 @@
 public class Inspectable {
+	public boolean visible;
+	public String name;
 	public String inspect() {
-		return "";
+		String description = "You see a " + name;
+		
+		return description;
 	}
 }
