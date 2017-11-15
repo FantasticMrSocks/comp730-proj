@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class destination {
+public class Destination {
 	public static void main(String[] args) {
 		int North;
 		int South;
@@ -16,7 +16,7 @@ public class destination {
 		East = 3;
 		West = 4; 
 		
-		if (move >= 1) {
+		if (move >= 1 && move<5) {
 			System.out.println( "Lets Go");
 			
 		}
@@ -30,3 +30,4 @@ public class destination {
 	
 	
 }
+
