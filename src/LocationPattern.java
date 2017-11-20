@@ -12,7 +12,7 @@ public class LocationPattern {
 		controller.updateView();
 		
 		//update model data
-		controller.setLocationName("Start");
+		//controller.setLocationName("Start");
 		
 		controller.updateView();
 		
