@@ -5,7 +5,10 @@ public class game {
 		// Use case - Player attacks monster
 		Player p = new Player("The Lord",100,10);
 		Monster m = new Monster("Spider",50,5);			
-		
+		p.addItemToInv("bacon"); // related to inventory
+		p.printInv(); // related to inventory
+		p.removeItemFromInv("bacon"); // related to inventory
+		p.printInv(); // related to inventory
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command = "";
