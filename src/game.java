@@ -2,9 +2,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.List;
+import java.util.ArrayList;
 
 public class game {
-	private List<Room> rooms;
 	
 	public static void main(String[] args) {
 		Map<String,MyCoord> multiplePoints = new HashMap<String,MyCoord>();
@@ -21,6 +21,14 @@ public class game {
 		p.printInv(); // related to inventory
 		p.removeItemFromInv("bacon"); // related to inventory
 		p.printInv(); // related to inventory
+		
+		List<Room> rooms = new ArrayList<Room>();
+		
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.get(1).addExit(new Exit(rooms.get(2), "east"));
+		rooms.get(2).addExit(new Exit(rooms.get(1), "west"));
+		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command = "";
@@ -33,7 +41,7 @@ public class game {
 				p.battle(m);
 			}
 			if (command.equals("search")) {
-				//search room
+				System.out.println(p.currentRoom.inspect());
 			}
 			else if (command.equals("help")) {
 				help();
@@ -46,10 +54,7 @@ public class game {
 	}
 	
 	public void initializeGame() {
-		rooms.add(new Room());
-		rooms.add(new Room());
-		rooms.get(1).addExit(new Exit(rooms.get(2), "east"));
-		rooms.get(2).addExit(new Exit(rooms.get(1), "west"));
+		//Whoops there should be something here
 	}
 	
 	public static void help() {

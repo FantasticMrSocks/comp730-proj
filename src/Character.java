@@ -2,7 +2,7 @@ public class Character {
 	private String name;	
 	private int hp;
 	private int str;
-	private String currentRoom;
+	public Room currentRoom;
 	//private int id;
 	//private int lv;
 	
