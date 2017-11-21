@@ -3,14 +3,14 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class game {
-	Map <String,MyCoord> multiplePoints=new HashMap<String, MyCoord>();
-	multiplePoints.put("point1", new MyCoord(10, 20));
-	multiplePoints.put("point2", new MyCoord(20, 40));
-
-	MyCoord coord=multiplePoints.get("point1");
-	System.out.println(coord.getX() + " : "+coord.getY());
-
 	public static void main(String[] args) {
+		Map<String,MyCoord> multiplePoints = new HashMap<String,MyCoord>();
+		multiplePoints.put("point1", new MyCoord(10, 20));
+		multiplePoints.put("point2", new MyCoord(20, 40));
+
+		MyCoord coord=multiplePoints.get("point1");
+		System.out.println(coord.getX() + " : "+coord.getY());
+		
 		// Use case - Player attacks monster
 		Player p = new Player("The Lord",100,10);
 		Monster m = new Monster("Spider",50,5);			
@@ -39,6 +39,7 @@ public class game {
 				System.out.println("unknown command");
 			}
 		}
+		reader.close();
 	}
 	public static void help() {
 		System.out.println ("-Player enters a labyrinth. He/she needs to get out by finding and defeating the final boss.");
