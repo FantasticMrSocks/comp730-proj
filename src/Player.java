@@ -21,9 +21,9 @@ public class Player  extends Character{
 	System.out.println("Your inventory is full.");
 		}
 	public void printInv() {
-	for(String x: inv);
-	char[] x = null;         //this piece wasn't shown in the inventory walkthrough
-	System.out.println(x);   // but this wouldn't work correctly with out it.
+		for(String x: inv) {
+			System.out.println(x);
+		}
 	}
 	public void removeItemFromInv (String name){
 	for(int i = 0; i < inv.length; i ++){
