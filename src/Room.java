@@ -7,6 +7,28 @@ public class Room {
 	public boolean visited;
 	public String description;
 	
+	public Room(List<Exit> exits, List<Inspectable> objects) {
+		for (Exit newExit : exits) {
+			exits.add(newExit);
+		}
+		
+		for (Inspectable newObject : objects) {
+			objects.add(newObject);
+		}
+	}
+
+	public Room(List<Exit> exits) {
+		for (Exit newExit : exits) {
+			exits.add(newExit);
+		}
+	}
+	
+	public Room(){}
+	
+	public void addExit(Exit newExit) {
+		exits.add(newExit);
+	}
+	
 	public String inspect() {
 		String result = "Current room: " + name + "\n" + description;
 		

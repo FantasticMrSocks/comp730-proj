@@ -1,13 +1,16 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.List;
 
 public class game {
+	private List<Room> rooms;
+	
 	public static void main(String[] args) {
 		Map<String,MyCoord> multiplePoints = new HashMap<String,MyCoord>();
 		multiplePoints.put("point1", new MyCoord(10, 20));
 		multiplePoints.put("point2", new MyCoord(20, 40));
-
+		
 		MyCoord coord=multiplePoints.get("point1");
 		System.out.println(coord.getX() + " : "+coord.getY());
 		
@@ -41,6 +44,14 @@ public class game {
 		}
 		reader.close();
 	}
+	
+	public void initializeGame() {
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.get(1).addExit(new Exit(rooms.get(2), "east"));
+		rooms.get(2).addExit(new Exit(rooms.get(1), "west"));
+	}
+	
 	public static void help() {
 		System.out.println ("-Player enters a labyrinth. He/she needs to get out by finding and defeating the final boss.");
 		System.out.println ("-Player can move by inputing four movement commands: North (N), South (S), East (E), West (W). Each command can be abbreviated by a single letter.");

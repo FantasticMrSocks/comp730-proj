@@ -1,7 +1,12 @@
 public class Exit {
 	public boolean visible = false;
-	public Room connectedRoom;
-	public String direction;
+	private Room connectedRoom;
+	private String direction;
+	
+	public Exit(Room nextRoom, String where){
+		connectedRoom = nextRoom;
+		direction = where;
+	}
 	
 	public String getDescription() {
 		String description = "This exit is to the " + direction;
