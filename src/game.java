@@ -26,8 +26,8 @@ public class game {
 		
 		rooms.add(new Room());
 		rooms.add(new Room());
-		rooms.get(1).addExit(new Exit(rooms.get(2), "east"));
-		rooms.get(2).addExit(new Exit(rooms.get(1), "west"));
+		rooms.get(0).addExit(new Exit(rooms.get(1), "east"));
+		rooms.get(1).addExit(new Exit(rooms.get(0), "west"));
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
