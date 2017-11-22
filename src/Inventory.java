@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
 	private List<Inspectable> inspectable;
 	
 	public Inventory() {
-		
+		inspectable = new ArrayList<Inspectable>(); 
 	}
 	// add an Item into this Inventory
 	public void addItem(Inspectable i) {
