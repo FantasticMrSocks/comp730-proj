@@ -1,39 +1,14 @@
 public class Player  extends Character{	
 	
+	private Inventory backpack;
+	
 	public Player(String n, int h, int s) {
-		this.setName(n);
-		this.setHP(h);
-		this.setSTR(s);
+		setName(n);
+		setHP(h);
+		setSTR(s);
+		backpack = new Inventory();
 	}
 
-	public void open() {		
-	}
-										// inventory starts here:
-	public void addItemToInv(String name){
-	
-		for(int i = 0; i < inv.length; i++) {
-		if(inv[i] =="") {
-			inv[i] = name;
-			
-	 System.out.println("You added " + name + " to your inventory.");
-	}
-		}
-	System.out.println("Your inventory is full.");
-		}
-	public void printInv() {
-		for(String x: inv) {
-			System.out.println(x);
-		}
-	}
-	public void removeItemFromInv (String name){
-	for(int i = 0; i < inv.length; i ++){
-	if(inv[i].equals(name)){
-		inv[i] = "";
-	}
-		}
-	System.out.println("That item isn't in your inventory.");
-			}
-	private static String inv[] = {"","","","","","","","","",""};
 	//these are the directions we will use
 		private int x, y;
 		private boolean north, south, east, west;

@@ -16,11 +16,7 @@ public class game {
 		
 		// Use case - Player attacks monster
 		Player p = new Player("The Lord",100,10);
-		Monster m = new Monster("Spider",50,5);			
-		p.addItemToInv("bacon"); // related to inventory
-		p.printInv(); // related to inventory
-		p.removeItemFromInv("bacon"); // related to inventory
-		p.printInv(); // related to inventory
+		Monster m = new Monster("Spider",50,5);
 		
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		

@@ -6,8 +6,9 @@ public class Item extends Inspectable{
     public String description;
     
     // constructor()
-    public Item() {   
-    
+    public Item(String myName, String myDescription) {   
+    	name = myName;
+    	description = myDescription;
     }
 }
 
