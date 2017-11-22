@@ -1,13 +1,13 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class Room {
-	private List<Exit> exits;
-	private List<Inspectable> objects;
+	private ArrayList<Exit> exits = new ArrayList<Exit>();
+	private ArrayList<Inspectable> objects = new ArrayList<Inspectable>();
 	public String name;
 	public boolean visited;
 	public String description;
 	
-	public Room(List<Exit> exits, List<Inspectable> objects) {
+	public Room(ArrayList<Exit> exits, ArrayList<Inspectable> objects) {
 		for (Exit newExit : exits) {
 			exits.add(newExit);
 		}
@@ -17,7 +17,7 @@ public class Room {
 		}
 	}
 
-	public Room(List<Exit> exits) {
+	public Room(ArrayList<Exit> exits) {
 		for (Exit newExit : exits) {
 			exits.add(newExit);
 		}
