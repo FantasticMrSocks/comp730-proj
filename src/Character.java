@@ -16,6 +16,7 @@ public class Character {
 		hp   = h;
 		str  = s;
 		inventory = new Inventory();
+		location = new MyCoord();
 	}	
 	public int getHP(){
 		return hp;
@@ -98,6 +99,29 @@ public class Character {
 	public MyCoord getLocation() {
 		return location;
 	}
-		
+	// Inspect the room and set the visited variable to true
+	public String inspect() {		
+		String result = "\nPlayer name: " + name + "\nStrength: "+ str+ "\nHealth: " +hp +"\n" ;				
+		for (Inspectable i : inventory.getItems()) {
+			result = result.concat("Inventory: \n" + i.inspect());
+		}
+		result = result.concat("\n" + "Location : X "+ location.getX()+ " Y "+ location.getY());
+		return result;
+	}	
+	// move function
+	public void move(String s) {
+		if(s.toLowerCase().equals("west") ||s.toLowerCase().equals("w")) {
+			location.setX(location.getX()-1);			
+		}
+		if(s.toLowerCase().equals("east") ||s.toLowerCase().equals("e")) {
+			location.setX(location.getX()+1);
+		}
+		if(s.toLowerCase().equals("north") ||s.toLowerCase().equals("n")) {
+			location.setY(location.getY()+1);
+		}
+		if(s.toLowerCase().equals("south") ||s.toLowerCase().equals("s")) {
+			location.setY(location.getY()-1);
+		}
+	}
 	
 }
