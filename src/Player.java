@@ -4,6 +4,7 @@ public class Player  extends Character{
 		this.setName(n);
 		this.setHP(h);
 		this.setSTR(s);
+		this.initialInventory();
 	}
 
 	public void open() {		

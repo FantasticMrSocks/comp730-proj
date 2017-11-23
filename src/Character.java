@@ -1,10 +1,12 @@
+import java.util.List;
+
 public class Character {
 	private String name;	
+	private Inventory inventory;
 	private int hp;
 	private int str;
 	public Room currentRoom;
-	//private int id;
-	//private int lv;
+	private MyCoord location;
 	
 	public Character() {
 		
@@ -13,6 +15,7 @@ public class Character {
 		name = n;
 		hp   = h;
 		str  = s;
+		inventory = new Inventory();
 	}	
 	public int getHP(){
 		return hp;
@@ -32,6 +35,30 @@ public class Character {
 	public void setSTR(int s){
 		str = s;
 	}
+	public void initialInventory(){
+		inventory = new Inventory();
+	}
+	// add an item into the inventory
+	public void addItem(Inspectable i){		
+		inventory.addItem(i);
+		System.out.println("You added " + i.inspect() + " to your inventory.");
+	}
+	// add a List of item into a room
+	public void addItems(List<Inspectable> objects) {
+		for (Inspectable newObject : objects) {
+			inventory.addItem(newObject);
+		}
+	}
+	// remove an item from the Inventory
+	public void removeItem(Inspectable i){
+		inventory.removeItem(i);
+	}
+	
+	/* use an item: return the item and remove it from the Inventory
+	public Inspectable useItem(Inspectable i) {
+		inventory.removeItem(i);	
+		return i;
+	}*/
 	
 	// This function will update the HP to the target character after being hit
 	public void attack(Character c) {
@@ -63,4 +90,14 @@ public class Character {
 			return false;
 		}			
 	}
+	// Set the location for character
+	public void setLocation(MyCoord l) {
+		location = l;
+	}
+	// get the current location of the character
+	public MyCoord getLocation() {
+		return location;
+	}
+		
+	
 }
