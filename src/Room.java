@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class Room {
 	private List<Exit> exits;
@@ -8,7 +9,8 @@ public class Room {
 	public String name;
 	public boolean visited;
 	public String description;
-	private MyCoord location;
+	
+	private HashMap<String, Room> hallways;
 	
 	// Constructor
 	public Room(){
@@ -17,39 +19,20 @@ public class Room {
 		name ="";
 		description ="";
 		visited =false;
+		hallways = new HashMap<String, Room>();
 	}
-	/*
-	public Room(List<Exit> exits, List<Inspectable> objects) {
-		for (Exit newExit : exits) {
-			exits.add(newExit);
-		}
-		
-		for (Inspectable newObject : objects) {
-			objects.add(newObject);
-		}
-	}*/
-	
-	public Room(List<Exit> e, Inventory i) {
-		exits = e;
-		inventory = i;
-	}
-	/*
-	public Room(List<Exit> exits) {
-		for (Exit newExit : exits) {
-			exits.add(newExit);
-		}
-	}*/	
-	
-	// add a list of Exits into a room
-	public void addExit(List<Exit> e) {
-		for (Exit newExit : e) {
-			exits.add(newExit);
-		}
-	}
-	
+
 	// add an Exit into a room
-	public void addExit(Exit newExit) {
-		exits.add(newExit);
+	public void addHallway(String direction, Room adjacentRoom) {
+		hallways.put(direction, adjacentRoom);
+	}
+	
+	public Room getNextRoom(String direction) {
+		if (hallways.containsKey(direction)) {
+			return hallways.get(direction);
+		} else {
+			return null;
+		}
 	}
 	
 	// add an item into a room
@@ -81,15 +64,6 @@ public class Room {
 		for (Inspectable i : inventory.getItems()) {
 			result = result.concat("\n" + i.inspect());
 		}
-		result = result.concat("\n" + "Location : X "+ location.getX()+ " Y "+ location.getY());
 		return result;
-	}
-	// Set the location for the room
-	public void setLocation(MyCoord l) {
-		location = l;
-	}
-	// get the current location of the character
-	public MyCoord getLocation() {
-		return location;
 	}
 }

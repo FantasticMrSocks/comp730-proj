@@ -5,18 +5,17 @@ public class Character {
 	private Inventory inventory;
 	private int hp;
 	private int str;
-	public Room currentRoom;
-	private MyCoord location;
+	private Room currentRoom;
 	
 	public Character() {
 		
 	}	
-	public Character(String n, int h, int s) {
+	public Character(String n, int h, int s, Room r) {
 		name = n;
 		hp   = h;
 		str  = s;
 		inventory = new Inventory();
-		location = new MyCoord();
+		currentRoom = r;
 	}	
 	public int getHP(){
 		return hp;
@@ -55,12 +54,6 @@ public class Character {
 		inventory.removeItem(i);
 	}
 	
-	/* use an item: return the item and remove it from the Inventory
-	public inspectable useItem(inspectable i) {
-		inventory.removeItem(i);	
-		return i;
-	}*/
-	
 	// This function will update the HP to the target character after being hit
 	public void attack(Character c) {
 		c.setHP(c.getHP()- this.getSTR()); // the new HP will be store
@@ -92,12 +85,12 @@ public class Character {
 		}			
 	}
 	// Set the location for character
-	public void setLocation(MyCoord l) {
-		location = l;
+	public void setRoom(Room r) {
+		currentRoom = r;
 	}
 	// get the current location of the character
-	public MyCoord getLocation() {
-		return location;
+	public Room getRoom() {
+		return currentRoom;
 	}
 	// Inspect the room and set the visited variable to true
 	public String inspect() {		
@@ -105,22 +98,16 @@ public class Character {
 		for (Inspectable i : inventory.getItems()) {
 			result = result.concat("Inventory: \n" + i.inspect());
 		}
-		result = result.concat("\n" + "Location : X "+ location.getX()+ " Y "+ location.getY());
 		return result;
 	}	
 	// move function
 	public void move(String s) {
-		if(s.toLowerCase().equals("west") ||s.toLowerCase().equals("w")) {
-			location.setX(location.getX()-1);			
-		}
-		if(s.toLowerCase().equals("east") ||s.toLowerCase().equals("e")) {
-			location.setX(location.getX()+1);
-		}
-		if(s.toLowerCase().equals("north") ||s.toLowerCase().equals("n")) {
-			location.setY(location.getY()+1);
-		}
-		if(s.toLowerCase().equals("south") ||s.toLowerCase().equals("s")) {
-			location.setY(location.getY()-1);
+		if (currentRoom.getNextRoom(s) != null) {
+			setRoom(currentRoom.getNextRoom(s));
+			System.out.println("You move to the " + s);
+			System.out.println(currentRoom.inspect());
+		} else {
+			System.out.println("There's nowhere to go in that direction.");
 		}
 	}
 	

@@ -1,51 +1,36 @@
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
 public class game {
 	
-	public static void main(String[] args) {
-		Map<String,MyCoord> multiplePoints = new HashMap<String,MyCoord>();
-		multiplePoints.put("point1", new MyCoord(10, 20));
-		multiplePoints.put("point2", new MyCoord(20, 40));
-		
-		MyCoord coord=multiplePoints.get("point1");
-		System.out.println(coord.getX() + " : "+coord.getY());
-		
+	public static void main(String[] args) {		
 		// Use case - Player attacks monster
 		Player p = new Player("The Lord",100,10);
-		Monster m = new Monster("Spider",50,5);		
-		/*
-		p.addItemToInv("bacon"); // related to inventory
-		p.printInv(); // related to inventory
-		p.removeItemFromInv("bacon"); // related to inventory
-		p.printInv(); // related to inventory
-		*/
+		Monster m = new Monster("Spider",50,5);
+		
 		List<Room> rooms = new ArrayList<Room>();
 		
 		rooms.add(new Room());
 		rooms.add(new Room());
-		rooms.get(0).addExit(new Exit(rooms.get(1), "east")); // add exit to a room
-		rooms.get(1).addExit(new Exit(rooms.get(0), "west"));	
+		rooms.get(0).addHallway("east", rooms.get(1));
+		rooms.get(1).addHallway("west", rooms.get(0));	
 		
-		rooms.get(0).setLocation( coord); // set the location to the room
 		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
 		
-		System.out.println(rooms.get(0).inspect());
-		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
-		p.setLocation(coord);  // Set location for player
 		
+		p.setRoom(rooms.get(1));
 		System.out.println(p.inspect()); // inspect player
-		p.move("west");                   // player move to west
-		System.out.println(p.inspect());
+		p.move("west");                  // player move to west
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command = "";
 		System.out.print ("Please enter a command: ");
+		
+		
+		//player interaction happens here
 		while (!exit) {
 			command = reader.next();
 			if (command.equals("quit")) {
@@ -54,7 +39,7 @@ public class game {
 				p.battle(m);
 			}
 			if (command.equals("search")) {
-				System.out.println(p.currentRoom.inspect());
+				System.out.println(p.getRoom().inspect());
 			}
 			else if (command.equals("help")) {
 				help();
