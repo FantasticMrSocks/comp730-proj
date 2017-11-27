@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Room {
 	private List<Exit> exits;
 	//private List<Inspectable> objects;
-	private Inventory inventory;
+	protected Inventory inventory;
 	public String name;
 	public boolean visited;
 	public String description;

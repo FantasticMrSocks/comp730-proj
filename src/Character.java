@@ -2,10 +2,10 @@ import java.util.List;
 
 public class Character {
 	private String name;	
-	private Inventory inventory;
+	protected Inventory inventory;
 	private int hp;
 	private int str;
-	private Room currentRoom;
+	protected Room currentRoom;
 	
 	public Character() {
 		
