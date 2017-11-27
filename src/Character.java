@@ -110,16 +110,13 @@ public class Character {
 	}	
 	// move function
 	public void move(String s) {
-		if(s.toLowerCase().equals("west") ||s.toLowerCase().equals("w")) {
+		if(s.equals("w")) {
 			location.setX(location.getX()-1);			
-		}
-		if(s.toLowerCase().equals("east") ||s.toLowerCase().equals("e")) {
+		}else if(s.equals("e")) {
 			location.setX(location.getX()+1);
-		}
-		if(s.toLowerCase().equals("north") ||s.toLowerCase().equals("n")) {
+		}else if(s.equals("n")) {
 			location.setY(location.getY()+1);
-		}
-		if(s.toLowerCase().equals("south") ||s.toLowerCase().equals("s")) {
+		}else if(s.equals("s")) {
 			location.setY(location.getY()-1);
 		}
 	}

@@ -32,10 +32,11 @@ public class game {
 		
 		rooms.get(0).setLocation( coord); // set the location to the room
 		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
+		rooms.get(0).addItem(new Inspectable ("Key#1","an old silver key with number 1 on it")); // Key #1
 		
 		System.out.println(rooms.get(0).inspect());
 		
-		p.addItem(new Inspectable ("Apple","a red deciduous fruit")); // add an Apple into player inventory
+		p.addItem(new Inspectable ("Apple","a deciduous fruit")); // add an Apple into player inventory
 		p.setLocation(coord);  // Set location for player
 		
 		System.out.println(p.inspect()); // inspect player
@@ -48,16 +49,29 @@ public class game {
 		System.out.print ("Please enter a command: ");
 		while (!exit) {
 			command = reader.next();
-			if (command.equals("quit")) {
+			if (command.toLowerCase().equals("quit")) {
 				exit = true;
-			}else if (command.equals("battle")) { // "The Lord" attacks "Spider" 
+			}
+			else if (command.toLowerCase().equals("battle")) { // "The Lord" attacks "Spider" 
 				p.battle(m);
 			}
-			if (command.equals("search")) {
+			else if (command.toLowerCase().equals("search")) {
 				System.out.println(p.currentRoom.inspect());
 			}
-			else if (command.equals("help")) {
+			else if (command.toLowerCase().equals("help")) {
 				help();
+			}
+			else if(command.toLowerCase().equals("west") ||command.toLowerCase().equals("w")) {
+				p.move("w");			
+			}
+			else if(command.toLowerCase().equals("east") ||command.toLowerCase().equals("e")) {
+				p.move("e");
+			}
+			else if(command.toLowerCase().equals("north") ||command.toLowerCase().equals("n")) {
+				p.move("n");
+			}
+			else if(command.toLowerCase().equals("south") ||command.toLowerCase().equals("s")) {
+				p.move("s");
 			}
 			else{
 				System.out.println("unknown command");
