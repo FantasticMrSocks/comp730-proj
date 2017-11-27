@@ -1,30 +1,28 @@
 
 
 public class MyCoord {
-	private int X;
-	private int Y;
+	private int x;
+	private int y;
 	
 	public MyCoord() {
-		this(0,0);
+		
 	}
-	public MyCoord(int X, int Y) {
-		this.X = X;
-		this.Y = Y;
+	public MyCoord(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 	public int getX() {
-		return X;
+		return x;
 	}
 	public int getY() {
-		return Y;
+		return y;
 	}
-	public void setX(int X) {
-		this.X = X;
+	public void setX(int x) {
+		this.x = x;
 	}
-	public void setY(int Y) {
-		this.Y = Y;
+	public void setY(int y) {
+		this.y = y;
 	}
-	
-
 		    
 }
 	

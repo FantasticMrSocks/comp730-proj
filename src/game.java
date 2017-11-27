@@ -16,19 +16,31 @@ public class game {
 		
 		// Use case - Player attacks monster
 		Player p = new Player("The Lord",100,10);
-		Monster m = new Monster("Spider",50,5);			
+		Monster m = new Monster("Spider",50,5);		
+		/*
 		p.addItemToInv("bacon"); // related to inventory
 		p.printInv(); // related to inventory
 		p.removeItemFromInv("bacon"); // related to inventory
 		p.printInv(); // related to inventory
-		
-		ArrayList<Room> rooms = new ArrayList<Room>();
+		*/
+		List<Room> rooms = new ArrayList<Room>();
 		
 		rooms.add(new Room());
 		rooms.add(new Room());
-		rooms.get(0).addExit(new Exit(rooms.get(1), "east"));
-		rooms.get(1).addExit(new Exit(rooms.get(0), "west"));
-		p.currentRoom = rooms.get(0);
+		rooms.get(0).addExit(new Exit(rooms.get(1), "east")); // add exit to a room
+		rooms.get(1).addExit(new Exit(rooms.get(0), "west"));	
+		
+		rooms.get(0).setLocation( coord); // set the location to the room
+		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
+		
+		System.out.println(rooms.get(0).inspect());
+		
+		p.addItem(new Inspectable ("Apple","a red deciduous fruit")); // add an Apple into player inventory
+		p.setLocation(coord);  // Set location for player
+		
+		System.out.println(p.inspect()); // inspect player
+		p.move("west");                   // player move to west
+		System.out.println(p.inspect());
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
