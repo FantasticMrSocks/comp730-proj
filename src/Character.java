@@ -56,7 +56,7 @@ public class Character {
 	}
 	
 	/* use an item: return the item and remove it from the Inventory
-	public Inspectable useItem(Inspectable i) {
+	public inspectable useItem(inspectable i) {
 		inventory.removeItem(i);	
 		return i;
 	}*/

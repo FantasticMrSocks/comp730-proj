@@ -35,7 +35,7 @@ public class game {
 		
 		System.out.println(rooms.get(0).inspect());
 		
-		p.addItem(new Inspectable ("Apple","a red deciduous fruit")); // add an Apple into player inventory
+		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		p.setLocation(coord);  // Set location for player
 		
 		System.out.println(p.inspect()); // inspect player
