@@ -30,7 +30,8 @@ public class game {
 		monsters.add(new Monster("Spider",20,2));
 		monsters.add(new Monster("Monkey",40,3));
 		
-		monsters.get(0).setLocation(map.get(1));// put the monkey into room #2
+		monsters.get(1).setLocation(map.get(0));// put a monkey into room #1
+		monsters.get(0).setLocation(map.get(1));// put a spider into room #2
 		
 		// add information for room #1
 		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
@@ -68,6 +69,7 @@ public class game {
 			else if (command.toLowerCase().equals("battle")) { // "The Lord" attacks "Spider" 
 				
 				p.battle(findMonster(p,monsters));
+				System.out.println("Player has "+p.getHP()+ "Health");
 				//p.battle(monsters.get(0));
 			}
 			else if (command.toLowerCase().equals("search")) {
@@ -78,19 +80,19 @@ public class game {
 			}
 			else if(command.toLowerCase().equals("west") ||command.toLowerCase().equals("w")) {
 				p.move("w");
-				getCurrentRoom(p, rooms);
+				p.setRoom(getCurrentRoom(p, rooms));
 			}
 			else if(command.toLowerCase().equals("east") ||command.toLowerCase().equals("e")) {
 				p.move("e");
-				getCurrentRoom(p, rooms);
+				p.setRoom(getCurrentRoom(p, rooms));
 			}
 			else if(command.toLowerCase().equals("north") ||command.toLowerCase().equals("n")) {
 				p.move("n");
-				getCurrentRoom(p, rooms);
+				p.setRoom(getCurrentRoom(p, rooms));
 			}
 			else if(command.toLowerCase().equals("south") ||command.toLowerCase().equals("s")) {
 				p.move("s");
-				getCurrentRoom(p, rooms);
+				p.setRoom(getCurrentRoom(p, rooms));
 			}
 			else if(command.toLowerCase().equals("inspect"))
 			{

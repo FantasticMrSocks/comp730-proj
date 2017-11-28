@@ -18,27 +18,15 @@ public class Room {
 		description ="";
 		visited =false;
 	}
-	/*
-	public Room(List<Exit> exits, List<Inspectable> objects) {
-		for (Exit newExit : exits) {
-			exits.add(newExit);
-		}
-		
-		for (Inspectable newObject : objects) {
-			objects.add(newObject);
-		}
-	}*/
+	
 	
 	public Room(List<Exit> e, Inventory i) {
 		exits = e;
 		inventory = i;
 	}
-	/*
-	public Room(List<Exit> exits) {
-		for (Exit newExit : exits) {
-			exits.add(newExit);
-		}
-	}*/	
+	public String getName() {
+		return name;
+	}
 	
 	// add a list of Exits into a room
 	public void addExit(List<Exit> e) {

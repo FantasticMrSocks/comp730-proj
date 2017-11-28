@@ -91,7 +91,7 @@ public class Character {
 	
 	// This function will return true if the character's HP <=0
 	public boolean death() {
-		if (hp <= 0) {
+		if (hp <= 0) {			
 			System.out.println(this.name +" has been slaughtered");
 			return true;
 		}
