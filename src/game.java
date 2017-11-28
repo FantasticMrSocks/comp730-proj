@@ -45,10 +45,10 @@ public class game {
 			else if (command.equals("help")) {
 				help();
 			}
-			else if (command.equals("move east")) {
+			else if (command.equals("east")) {
 				p.move("east");
 			}
-			else if (command.equals("move west")) {
+			else if (command.equals("west")) {
 				p.move("west");
 			}
 			else{
