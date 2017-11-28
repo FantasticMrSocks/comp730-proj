@@ -17,6 +17,7 @@ public class game {
 		rooms.get(1).addHallway("west", rooms.get(0));	
 		
 		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
+		rooms.get(1).addInformation("Field","a green field with nothing in it");// add name and description to a room
 		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		
@@ -43,6 +44,12 @@ public class game {
 			}
 			else if (command.equals("help")) {
 				help();
+			}
+			else if (command.equals("move east")) {
+				p.move("east");
+			}
+			else if (command.equals("move west")) {
+				p.move("west");
 			}
 			else{
 				System.out.println("unknown command");
