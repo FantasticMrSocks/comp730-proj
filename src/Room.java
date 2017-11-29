@@ -26,6 +26,17 @@ public class Room {
 	public void addHallway(String direction, Room adjacentRoom) {
 		hallways.put(direction, adjacentRoom);
 	}
+	// give a name of an item, remove that Item from the Inventory
+	public Inspectable removeItem(String n) {	
+		Inspectable temp = new Inspectable("No item", "No item");
+		for(Inspectable item : this.inventory.getItems()) {
+			if(item.getName().equals(n)) {				
+				this.inventory.removeItem(item);
+				return item;
+			}
+		}
+		return temp;		
+	}
 	
 	public Room getNextRoom(String direction) {
 		if (hallways.containsKey(direction)) {

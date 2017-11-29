@@ -12,6 +12,10 @@ public class Inspectable {
 		visible = v;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public String inspect() {
 		String d = name + "\n" + description;		
 		return d;

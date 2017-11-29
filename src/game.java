@@ -51,7 +51,11 @@ public class game {
 			else if (command.equals("west")) {
 				p.move("west");
 			}
-			else{
+			else if (command.substring(0,4).equals("take")||command.substring(0,4).equals("pick")){				
+				p.addItem(p.getRoom().removeItem(command.substring(5)));
+				
+			}else
+			{
 				System.out.println("unknown command");
 			}
 		}
@@ -65,7 +69,7 @@ public class game {
 	public static void help() {
 		System.out.println ("-Player enters a labyrinth. He/she needs to get out by finding and defeating the final boss.");
 		System.out.println ("-Player can move by inputing four movement commands: North (N), South (S), East (E), West (W). Each command can be abbreviated by a single letter.");
-		System.out.println ("-Player can pick up an item with key word 'pick'+ item's name");
+		System.out.println ("-Player can pick up an item with key word 'take' or 'pick'+ item's name");
 		System.out.println ("-Player can use an item in his/her inventory with key word 'use' + item's name");
 		System.out.println ("-Player can Inspect an item with the key word 'inspect' + item's name");
 		System.out.println ("-Player can inspect the current location with the key word 'search'");
