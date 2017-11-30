@@ -13,11 +13,35 @@ public class game {
 		
 		rooms.add(new Room());
 		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
 		rooms.get(0).addHallway("east", rooms.get(1));
 		rooms.get(1).addHallway("west", rooms.get(0));	
+		rooms.get(1).addHallway("north", rooms.get(2));
+		rooms.get(2).addHallway("west", rooms.get(3));
+		rooms.get(3).addHallway("north", rooms.get(4));
+		rooms.get(4).addHallway("east", rooms.get(5));
+		rooms.get(4).addHallway("northeast", rooms.get(6));
+		rooms.get(5).addHallway("northwest", rooms.get(6));
 		
-		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
-		rooms.get(1).addInformation("Field","a green field with nothing in it");// add name and description to a room
+		rooms.get(6).addHallway("southwest", rooms.get(4));
+		rooms.get(6).addHallway("southeast", rooms.get(5));	
+		rooms.get(5).addHallway("southwest", rooms.get(4));
+		rooms.get(4).addHallway("gosouth", rooms.get(3));
+		rooms.get(3).addHallway("southeast", rooms.get(2));
+		rooms.get(2).addHallway("gosouth", rooms.get(1));
+		rooms.get(1).addHallway("southwest", rooms.get(0));
+		
+		rooms.get(0).addInformation("Restroom","A bathroom in a public building");// add name and description to a room
+		rooms.get(1).addInformation("Field", "A green field with nothing in it");// add name and description to a room
+		rooms.get(2).addInformation("Storage", "An old dusty storage room with a shiny object");// add name and description to a room
+		rooms.get(3).addInformation("Kitchen", "The kitchen, what messey people eat in this place"); // add name and description to a room
+		rooms.get(4).addInformation("Office", "There are many desks and chairs here");// add name and description to a room
+		rooms.get(5).addInformation("Meeting Room", "This is a meeting room, there is one large desk, many chairs, and a file drawer");//add name and description to a room
+		rooms.get(6).addInformation("Auditorium", "The auditorium is a huge space, something big with six legs is blocking the exit");
 		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		
@@ -50,6 +74,24 @@ public class game {
 			}
 			else if (command.equals("west")) {
 				p.move("west");
+			}
+			else if(command.equals("north")) {
+				p.move("north");
+			}
+			else if(command.equals("northeast")) {
+				p.move("northeast");
+			}
+			else if(command.equals("northwest")) {
+				p.move("northwest");
+			}
+			else if(command.equals("southeast")) {
+				p.move("southeast");
+			}
+			else if(command.equals("southwest")) {
+				p.move("southwest");
+			}
+			else if(command.equals("gosouth")) {
+				p.move("gosouth");
 			}
 			else{
 				System.out.println("unknown command");
