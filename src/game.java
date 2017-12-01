@@ -18,6 +18,10 @@ public class game {
 		rooms.add(new Room());
 		rooms.add(new Room());
 		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		
 		rooms.get(0).addHallway("east", rooms.get(1));
 		rooms.get(1).addHallway("west", rooms.get(0));	
 		rooms.get(1).addHallway("north", rooms.get(2));
@@ -26,6 +30,10 @@ public class game {
 		rooms.get(4).addHallway("east", rooms.get(5));
 		rooms.get(4).addHallway("northeast", rooms.get(6));
 		rooms.get(5).addHallway("northwest", rooms.get(6));
+		rooms.get(1).addHallway("east", rooms.get(7));
+		rooms.get(7).addHallway("north", rooms.get(8));
+		rooms.get(8).addHallway("climbup", rooms.get(9));
+		rooms.get(9).addHallway("climbup", rooms.get(6));
 		
 		rooms.get(6).addHallway("southwest", rooms.get(4));
 		rooms.get(6).addHallway("southeast", rooms.get(5));	
@@ -34,14 +42,21 @@ public class game {
 		rooms.get(3).addHallway("southeast", rooms.get(2));
 		rooms.get(2).addHallway("gosouth", rooms.get(1));
 		rooms.get(1).addHallway("southwest", rooms.get(0));
+		rooms.get(7).addHallway("southwest", rooms.get(1));
+		rooms.get(8).addHallway("gosouth", rooms.get(7));
+		rooms.get(9).addHallway("climbdown", rooms.get(8));
+		rooms.get(6).addHallway("east", rooms.get(9));
 		
 		rooms.get(0).addInformation("Restroom","A bathroom in a public building. I should get out of here and go explore. To the east there is a door leading outside. As the saying goes, 'There's nothing to see here.'");// add name and description to a room
-		rooms.get(1).addInformation("Field", "A green field with nothing in it. To the southwest is the restroom, to the north is a door leading inside.");// add name and description to a room
+		rooms.get(1).addInformation("Field", "A green field with nothing in it. To the southwest is the restroom, to the north is a door leading inside, to the east is the Garden.");// add name and description to a room
 		rooms.get(2).addInformation("Storage", "An old dusty storage room with a shiny object. To the west is the kitchen, we can also gosouth to go back outside.");// add name and description to a room
 		rooms.get(3).addInformation("Kitchen", "The kitchen, what messey people eat in this place. To the north is an office and to the southeast is the Storage closet."); // add name and description to a room
 		rooms.get(4).addInformation("Office", "There are many desks and chairs here. We can move northeast to the Auditorium or east to the Meeting Room. We also can gosouth back to the kitchen.");// add name and description to a room
 		rooms.get(5).addInformation("Meeting Room", "This is a meeting room, there is one large desk, many chairs, and a file drawer. The Auditorium is to the northwest and the Office to the southwest.");//add name and description to a room
-		rooms.get(6).addInformation("Auditorium", "The auditorium is a huge space, something big with six legs is blocking the exit. We have the Office to the southwest and the Meeting Room to the southeast.");
+		rooms.get(6).addInformation("Auditorium", "The auditorium is a huge space, something big with six legs is blocking the exit. We have the Office to the southwest and the Meeting Room to the southeast, and the Fire Ladder outside the window to the east");//add description to a room
+		rooms.get(7).addInformation("Garden", "This is the garden, to the north is a fire escape, to the southwest is the field");
+		rooms.get(8).addInformation("Fire Escape", "This is the outside Fire Escape, we can climbup the ladder in front of us or gosouth back to the Garden");
+		rooms.get(9).addInformation("Fire Ladder", "This is the Fire Ladder, we can climbup and into the Auditorium or climbdown to the bottom of the Fire Escape");
 		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		
@@ -92,6 +107,12 @@ public class game {
 			}
 			else if(command.equals("gosouth")) {
 				p.move("gosouth");
+			}
+			else if(command.equals("climbup")) {
+				p.move("climbup");
+			}
+			else if(command.equals("climbdown")) {
+				p.move("climbdown");
 			}
 			else{
 				System.out.println("unknown command");
