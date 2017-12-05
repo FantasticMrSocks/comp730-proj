@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Room {
 	private List<Exit> exits;
@@ -56,14 +58,15 @@ public class Room {
 		visited = true;
 		String result = "Current room: " + name + "\n" + description;
 		
-		for (Exit exit : exits) {
-			if (exit.visible) {
-				result = result.concat("\n" + exit.getDescription());
-			}
-		}		
+		String exits = "Exits are";
+		for (String direction : hallways.keySet()) {
+			exits = exits.concat(" " + direction + ",");
+		}
+		exits = exits.substring(0, exits.length() - 1) + "\n";
+		
 		for (Inspectable i : inventory.getItems()) {
 			result = result.concat("\n" + i.inspect());
 		}
-		return result;
+		return result + "\n" + exits;
 	}
 }

@@ -104,7 +104,7 @@ public class Character {
 	public void move(String s) {
 		if (currentRoom.getNextRoom(s) != null) {
 			setRoom(currentRoom.getNextRoom(s));
-			System.out.println("You move to the " + s);
+			System.out.println("You move " + s);
 			System.out.println(currentRoom.inspect());
 		} else {
 			System.out.println("There's nowhere to go in that direction.");
