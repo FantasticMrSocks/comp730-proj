@@ -3,11 +3,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class game {
-	
+	static final int maxWidth = 3;
+	static final int maxHeight = 3;
+	static final int maxRooms = 9;
 	public static void main(String[] args) {		
 		// Use case - Player attacks monster
+		List<Monster> monsters = new ArrayList<Monster>(); // list of monsters
 		Player p = new Player("The Lord",100,10,50);
 		Monster m = new Monster("Spider",50,5,50);
+		monsters.add(new Monster("Monkey",40,3,50));
 		
 		List<Room> rooms = new ArrayList<Room>();
 		
@@ -57,17 +61,44 @@ public class game {
 		rooms.get(7).addInformation("Garden", "This is the garden, to the north is a fire escape, to the southwest is the field");
 		rooms.get(8).addInformation("Fire Escape", "This is the outside Fire Escape, we can climb up the ladder in front of us or go south back to the Garden");
 		rooms.get(9).addInformation("Fire Ladder", "This is the Fire Ladder, we can climb up and into the Auditorium or climb down to the bottom of the Fire Escape");
+
+		//int k =0;
+		//List<MyCoord> map = new ArrayList<MyCoord>(); // list of locations
+		//for (int i =0; i<maxWidth; i++) {
+		//	for (int j = 0; j<maxHeight; j++){
+		//		map.add(new MyCoord(i,j)); // Initialize 9 locations
+		//		rooms.add(new Room()); // Initialize for room 1 -9
+		//		rooms.get(k).setLocation(map.get(k)); // Set location for all the rooms
+		//		k++;
+		//	}
+		//}
 		
-		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
+		
+		//monsters.get(1).setLocation(map.get(0));// put a monkey into room #1
+		//monsters.get(0).setLocation(map.get(1));// put a spider into room #2
+		
+		// add information for room #1
+		//rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
+		//rooms.get(0).addItem(new Inspectable ("Key#1","an old silver key with number 1 on it")); // Key #1
+		
+		// add information for room #2
+		//rooms.get(1).addInformation("Normal room","A small room, there is an apple on the table \r\n" + 
+		//		"in the corner of the room.");// add name and description to a room
+		//rooms.get(1).addItem(new Inspectable ("Apple","a deciduous fruit")); // add an apple
+		
+		// add information for room #3
+		//rooms.get(2).addInformation("A small storage room", "It has spider web with some \r\n" + 
+		//				"mosquito corpses that were still hanging on the \r\n" + 
+		//				"wall. There's a spider on the ceiling directly above you. ");// add name and description to a room
+		//monsters.get(0).setLocation(rooms.get(2).getLocation());
 		
 		rooms.get(0).addItem(new Inspectable ("Bread","a old bread")); // add a bread into the first room inventory
-		//rooms.get(0).removeItem("Bread");
-		
+		p.addItem(new Inspectable ("Apple","a deciduous fruit")); // add an Apple into player inventory
 		
 		p.setRoom(rooms.get(0));
 		System.out.println(p.inspect()); // inspect player
-		String text ="take Bread"; // Test command take		
-		
+		p.move("east");                   // player move to east
+		System.out.println(p.inspect());
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
@@ -76,16 +107,19 @@ public class game {
 		//player interaction happens here
 		while (!exit) {
 			command = reader.nextLine();
-			if (command.equals("quit")) {
+			if (command.toLowerCase().equals("quit")) {
 				exit = true;
 			}
-			else if (command.equals("battle")) { // "The Lord" attacks "Spider" 
-				p.battle(m);
+			else if (command.toLowerCase().equals("battle")) { // "The Lord" attacks "Spider" 
+				
+				p.battle(findMonster(p,monsters));
+				System.out.println("Player has "+p.getHP()+ "Health");
+				//p.battle(monsters.get(0));
 			}
-			else if (command.equals("search")) {
+			else if (command.toLowerCase().equals("search")) {
 				System.out.println(p.getRoom().inspect());
 			}
-			else if (command.equals("help")) {
+			else if (command.toLowerCase().equals("help")) {
 				help();
 			}
 			else if (command.substring(0, 4).equals("move")) {
@@ -97,18 +131,25 @@ public class game {
 			else if (command.length()>6 && command.substring(0,4).equals("take")){
 				p.addItem(p.getRoom().removeItem(command.substring(5,command.length())));
 			}
-			else
+			else if(command.toLowerCase().equals("inspect"))
 			{
+				System.out.println(p.inspect());	
+			}
+			else{
 				System.out.println("unknown command");
 			}
 		}
 		reader.close();
 	}
 	
-	public void initializeGame() {
-		//Whoops there should be something here
+	public static Character findMonster(Player p,List<Monster> monsters) {
+		for(Monster m : monsters) {
+			if (p.getRoom()==m.getRoom()) {
+				return m;
+			}
+		}
+		return null;
 	}
-	
 	public static void help() {
 		System.out.println ("-Player enters a labyrinth. He/she needs to get out by finding and defeating the final boss.");
 		System.out.println ("-Player can move by inputing four movement commands: North (N), South (S), East (E), West (W). Each command can be abbreviated by a single letter.");

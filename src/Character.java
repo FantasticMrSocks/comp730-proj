@@ -19,6 +19,13 @@ public class Character {
 		inventory = new Inventory();
 		currentRoom = r;
 	}	
+	public void setRoom(Room r) {
+		currentRoom =r;
+	}
+	public Room getRoom() {
+		return currentRoom;
+	}
+	
 	public int getHP(){
 		return hp;
 	}
@@ -57,7 +64,7 @@ public class Character {
 		}
 			
 	}
-	// add a List of item into a room
+	// add a List of item into the inventory
 	public void addItems(List<Inspectable> objects) {
 		for (Inspectable newObject : objects) {
 			inventory.addItem(newObject);
@@ -88,6 +95,7 @@ public class Character {
 	
 	// This function will let the current character and the opponent attack each other until one of them dies
 	public Character battle(Character m) {
+		
 		while(true) {
 			this.attack(m); 
 			if (m.death()) {  // If the HP of the opponent <= 0
@@ -102,7 +110,7 @@ public class Character {
 	
 	// This function will return true if the character's HP <=0
 	public boolean death() {
-		if (hp <= 0) {
+		if (hp <= 0) {			
 			System.out.println(this.name +" has been slaughtered");
 			return true;
 		}
@@ -110,15 +118,7 @@ public class Character {
 			return false;
 		}			
 	}
-	// Set the location for character
-	public void setRoom(Room r) {
-		currentRoom = r;
-	}
-	// get the current location of the character
-	public Room getRoom() {
-		return currentRoom;
-	}
-	// Inspect the room and set the visited variable to true
+	// Inspect the player
 	public String inspect() {		
 		String result = "\nPlayer name: " + name + "\nHealth: " +hp + "\nStrength: "+ str + "\nCritical ratio: "+ crit+"\n" ;				
 		for (Inspectable i : inventory.getItems()) {

@@ -1,11 +1,7 @@
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Room {
-	private List<Exit> exits;
 	//private List<Inspectable> objects;
 	protected Inventory inventory;
 	public String name;
@@ -16,7 +12,6 @@ public class Room {
 	
 	// Constructor
 	public Room(){
-		exits = new ArrayList<Exit>();
 		inventory = new Inventory();
 		name ="";
 		description ="";

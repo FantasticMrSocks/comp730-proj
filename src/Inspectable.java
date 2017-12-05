@@ -17,7 +17,7 @@ public class Inspectable {
 	}
 	
 	public String inspect() {
-		String d = name + "\n" + description;		
+		String d = name + ": " + description;		
 		return d;
 	}
 }
