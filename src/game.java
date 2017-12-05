@@ -45,7 +45,6 @@ public class game {
 		rooms.get(4).addHallway("south", rooms.get(3));
 		rooms.get(3).addHallway("southeast", rooms.get(2));
 		rooms.get(2).addHallway("south", rooms.get(1));
-		rooms.get(1).addHallway("southwest", rooms.get(0));
 		rooms.get(7).addHallway("southwest", rooms.get(1));
 		rooms.get(8).addHallway("south", rooms.get(7));
 		rooms.get(9).addHallway("down", rooms.get(8));
