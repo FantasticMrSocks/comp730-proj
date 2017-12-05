@@ -96,9 +96,11 @@ public class game {
 		p.addItem(new Inspectable ("Apple","a deciduous fruit")); // add an Apple into player inventory
 		
 		p.setRoom(rooms.get(0));
-		System.out.println(p.inspect()); // inspect player
-		p.move("east");                   // player move to east
-		System.out.println(p.inspect());
+		
+		monsters.get(0).setRoom(rooms.get(0));
+		//System.out.println(p.inspect()); // inspect player
+		//p.move("east");                   // player move to east
+		//System.out.println(p.inspect());
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
