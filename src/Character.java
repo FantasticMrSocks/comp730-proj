@@ -5,15 +5,17 @@ public class Character {
 	protected Inventory inventory;
 	private int hp;
 	private int str;
+	private int crit;    // Critical ratio, range [0-100] ==> [0%-100%] ratio
 	protected Room currentRoom;
 	
 	public Character() {
 		
 	}	
-	public Character(String n, int h, int s, Room r) {
+	public Character(String n, int h, int s, int c,Room r) {
 		name = n;
 		hp   = h;
 		str  = s;
+		crit =c;
 		inventory = new Inventory();
 		currentRoom = r;
 	}	
@@ -34,6 +36,12 @@ public class Character {
 	}
 	public void setSTR(int s){
 		str = s;
+	}
+	public int getCrit(){
+		return crit;
+	}
+	public void setCrit(int n){
+		crit = n;
 	}
 	public void initialInventory(){
 		inventory = new Inventory();
@@ -62,8 +70,20 @@ public class Character {
 	
 	// This function will update the HP to the target character after being hit
 	public void attack(Character c) {
-		c.setHP(c.getHP()- this.getSTR()); // the new HP will be store
-		System.out.println(this.getName()+" attack "+c.getName()+", "+c.getName()+" is received "+this.getSTR()+ " damages");
+		if (this.critical()==1) { // if the attack is critical
+			c.setHP(c.getHP()- 2*this.getSTR()); // The dam deal will be double
+			System.out.println(this.getName()+" attack "+c.getName()+" with a critical hit, "+c.getName()+" is received "+2*this.getSTR()+ " damages");
+		}else {
+			c.setHP(c.getHP()- this.getSTR());	// the dam deal will be normal
+			System.out.println(this.getName()+" attack "+c.getName()+", "+c.getName()+" is received "+this.getSTR()+ " damages");
+		}		 		
+	}
+	// This function will decide the next attack will be a critical one or not
+	public int critical() {
+		if ((Math.random() * 100 <= this.getCrit())){
+			return 1;
+		}else
+			return 0;
 	}
 	
 	// This function will let the current character and the opponent attack each other until one of them dies
@@ -100,7 +120,7 @@ public class Character {
 	}
 	// Inspect the room and set the visited variable to true
 	public String inspect() {		
-		String result = "\nPlayer name: " + name + "\nHealth: " +hp + "\nStrength: "+ str +"\n" ;				
+		String result = "\nPlayer name: " + name + "\nHealth: " +hp + "\nStrength: "+ str + "\nCritical ratio: "+ crit+"\n" ;				
 		for (Inspectable i : inventory.getItems()) {
 			result = result.concat("Inventory: \n" + i.inspect());
 		}

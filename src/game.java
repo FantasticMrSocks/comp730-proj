@@ -6,8 +6,8 @@ public class game {
 	
 	public static void main(String[] args) {		
 		// Use case - Player attacks monster
-		Player p = new Player("The Lord",100,10);
-		Monster m = new Monster("Spider",50,5);
+		Player p = new Player("The Lord",100,10,50);
+		Monster m = new Monster("Spider",50,5,50);
 		
 		List<Room> rooms = new ArrayList<Room>();
 		
