@@ -1,9 +1,10 @@
 public class Player  extends Character{	
 	
-	public Player(String n, int h, int s) {
+	public Player(String n, int h, int s, int c) {
 		this.setName(n);
 		this.setHP(h);
 		this.setSTR(s);
+		this.setCrit(c);
 		this.initialInventory();
 	}
 

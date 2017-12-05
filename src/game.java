@@ -6,8 +6,8 @@ public class game {
 	
 	public static void main(String[] args) {		
 		// Use case - Player attacks monster
-		Player p = new Player("The Lord",100,10);
-		Monster m = new Monster("Spider",50,5);
+		Player p = new Player("The Lord",100,10,50);
+		Monster m = new Monster("Spider",50,5,50);
 		
 		List<Room> rooms = new ArrayList<Room>();
 		
@@ -60,16 +60,19 @@ public class game {
 		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		
-		p.setRoom(rooms.get(1));
+		rooms.get(0).addItem(new Inspectable ("Bread","a old bread")); // add a bread into the first room inventory
+		//rooms.get(0).removeItem("Bread");
+		
+		
+		p.setRoom(rooms.get(0));
 		System.out.println(p.inspect()); // inspect player
-		p.move("west");                  // player move to west
+		String text ="take Bread"; // Test command take		
+		
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
-		String command = "";
+		String command ;
 		System.out.print ("Please enter a command: ");
-		
-		
 		//player interaction happens here
 		while (!exit) {
 			command = reader.nextLine();
@@ -88,7 +91,14 @@ public class game {
 			else if (command.substring(0, 4).equals("move")) {
 				p.move(command.substring(4).trim());
 			}
-			else{
+			else if (command.equals("inspect")) {
+				System.out.println(p.inspect()); // inspect player
+			}
+			else if (command.length()>6 && command.substring(0,4).equals("take")){
+				p.addItem(p.getRoom().removeItem(command.substring(5,command.length())));
+			}
+			else
+			{
 				System.out.println("unknown command");
 			}
 		}
@@ -102,7 +112,7 @@ public class game {
 	public static void help() {
 		System.out.println ("-Player enters a labyrinth. He/she needs to get out by finding and defeating the final boss.");
 		System.out.println ("-Player can move by inputing four movement commands: North (N), South (S), East (E), West (W). Each command can be abbreviated by a single letter.");
-		System.out.println ("-Player can pick up an item with key word 'pick'+ item's name");
+		System.out.println ("-Player can pick up an item with key word 'take' or 'pick'+ item's name");
 		System.out.println ("-Player can use an item in his/her inventory with key word 'use' + item's name");
 		System.out.println ("-Player can Inspect an item with the key word 'inspect' + item's name");
 		System.out.println ("-Player can inspect the current location with the key word 'search'");

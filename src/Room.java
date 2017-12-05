@@ -28,6 +28,16 @@ public class Room {
 	public void addHallway(String direction, Room adjacentRoom) {
 		hallways.put(direction, adjacentRoom);
 	}
+	// give a name of an item, remove that Item from the Inventory
+	public Inspectable removeItem(String n) {		
+		for(Inspectable item : this.inventory.getItems()) {
+			if(item.getName().equals(n)) {				
+				this.inventory.removeItem(item);
+				return item;
+			}
+		}
+		return null;				
+	}
 	
 	public Room getNextRoom(String direction) {
 		if (hallways.containsKey(direction)) {
@@ -56,7 +66,7 @@ public class Room {
 	// Inspect the room and set the visited variable to true
 	public String inspect() {
 		visited = true;
-		String result = "Current room: " + name + "\n" + description;
+		String result = "Room: " + name + "\n" + description;
 		
 		String exits = "Exits are";
 		for (String direction : hallways.keySet()) {
