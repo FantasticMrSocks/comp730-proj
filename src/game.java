@@ -60,8 +60,8 @@ public class game {
 		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		
-		rooms.get(0).addItem(new Inspectable ("Bread","a old bread")); // add a bread into the first room inventory
-		//rooms.get(0).removeItem("Bread");
+		rooms.get(0).addItem(new Inspectable ("Bread","an old bread")); // add a bread into the first room inventory
+
 		
 		
 		p.setRoom(rooms.get(0));
