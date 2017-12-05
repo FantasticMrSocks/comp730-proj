@@ -40,8 +40,14 @@ public class Character {
 	}
 	// add an item into the inventory
 	public void addItem(Inspectable i){		
+		if( i !=null) {
 		inventory.addItem(i);
 		System.out.println("You added " + i.inspect() + " to your inventory.");
+		}
+		else {
+			System.out.println("There are no item to add");
+		}
+			
 	}
 	// add a List of item into a room
 	public void addItems(List<Inspectable> objects) {
@@ -94,7 +100,7 @@ public class Character {
 	}
 	// Inspect the room and set the visited variable to true
 	public String inspect() {		
-		String result = "\nPlayer name: " + name + "\nStrength: "+ str+ "\nHealth: " +hp +"\n" ;				
+		String result = "\nPlayer name: " + name + "\nHealth: " +hp + "\nStrength: "+ str +"\n" ;				
 		for (Inspectable i : inventory.getItems()) {
 			result = result.concat("Inventory: \n" + i.inspect());
 		}

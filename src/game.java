@@ -13,27 +13,69 @@ public class game {
 		
 		rooms.add(new Room());
 		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		rooms.add(new Room());
+		
 		rooms.get(0).addHallway("east", rooms.get(1));
 		rooms.get(1).addHallway("west", rooms.get(0));	
+		rooms.get(1).addHallway("north", rooms.get(2));
+		rooms.get(2).addHallway("west", rooms.get(3));
+		rooms.get(3).addHallway("north", rooms.get(4));
+		rooms.get(4).addHallway("east", rooms.get(5));
+		rooms.get(4).addHallway("northeast", rooms.get(6));
+		rooms.get(5).addHallway("northwest", rooms.get(6));
+		rooms.get(1).addHallway("east", rooms.get(7));
+		rooms.get(7).addHallway("north", rooms.get(8));
+		rooms.get(8).addHallway("climbup", rooms.get(9));
+		rooms.get(9).addHallway("climbup", rooms.get(6));
 		
-		rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
-		rooms.get(1).addInformation("Field","a green field with nothing in it");// add name and description to a room
+		rooms.get(6).addHallway("southwest", rooms.get(4));
+		rooms.get(6).addHallway("southeast", rooms.get(5));	
+		rooms.get(5).addHallway("southwest", rooms.get(4));
+		rooms.get(4).addHallway("gosouth", rooms.get(3));
+		rooms.get(3).addHallway("southeast", rooms.get(2));
+		rooms.get(2).addHallway("gosouth", rooms.get(1));
+		rooms.get(1).addHallway("southwest", rooms.get(0));
+		rooms.get(7).addHallway("southwest", rooms.get(1));
+		rooms.get(8).addHallway("gosouth", rooms.get(7));
+		rooms.get(9).addHallway("climbdown", rooms.get(8));
+		rooms.get(6).addHallway("east", rooms.get(9));
+		
+		rooms.get(0).addInformation("Restroom","A bathroom in a public building. I should get out of here and go explore. To the east there is a door leading outside. As the saying goes, 'There's nothing to see here.'");// add name and description to a room
+		rooms.get(1).addInformation("Field", "A green field with nothing in it. To the southwest is the restroom, to the north is a door leading inside, to the east is the Garden.");// add name and description to a room
+		rooms.get(2).addInformation("Storage", "An old dusty storage room with a shiny object. To the west is the kitchen, we can also gosouth to go back outside.");// add name and description to a room
+		rooms.get(3).addInformation("Kitchen", "The kitchen, what messey people eat in this place. To the north is an office and to the southeast is the Storage closet."); // add name and description to a room
+		rooms.get(4).addInformation("Office", "There are many desks and chairs here. We can move northeast to the Auditorium or east to the Meeting Room. We also can gosouth back to the kitchen.");// add name and description to a room
+		rooms.get(5).addInformation("Meeting Room", "This is a meeting room, there is one large desk, many chairs, and a file drawer. The Auditorium is to the northwest and the Office to the southwest.");//add name and description to a room
+		rooms.get(6).addInformation("Auditorium", "The auditorium is a huge space, something big with six legs is blocking the exit. We have the Office to the southwest and the Meeting Room to the southeast, and the Fire Ladder outside the window to the east");//add description to a room
+		rooms.get(7).addInformation("Garden", "This is the garden, to the north is a fire escape, to the southwest is the field");
+		rooms.get(8).addInformation("Fire Escape", "This is the outside Fire Escape, we can climbup the ladder in front of us or gosouth back to the Garden");
+		rooms.get(9).addInformation("Fire Ladder", "This is the Fire Ladder, we can climbup and into the Auditorium or climbdown to the bottom of the Fire Escape");
 		
 		p.addItem(new Inspectable ("Apple","a red delicious fruit")); // add an Apple into player inventory
 		
-		p.setRoom(rooms.get(1));
+		rooms.get(0).addItem(new Inspectable ("Bread","a old bread")); // add a bread into the first room inventory
+		//rooms.get(0).removeItem("Bread");
+		
+		
+		p.setRoom(rooms.get(0));
 		System.out.println(p.inspect()); // inspect player
-		p.move("west");                  // player move to west
+		String text ="take Bread"; // Test command take		
+		
 		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
-		String command = "";
+		String command ;
 		System.out.print ("Please enter a command: ");
-		
-		
 		//player interaction happens here
 		while (!exit) {
-			command = reader.next();
+			command = reader.nextLine();
 			if (command.equals("quit")) {
 				exit = true;
 			}else if (command.equals("battle")) { // "The Lord" attacks "Spider" 
@@ -51,10 +93,13 @@ public class game {
 			else if (command.equals("west")) {
 				p.move("west");
 			}
-			else if (command.substring(0,4).equals("take")||command.substring(0,4).equals("pick")){				
-				p.addItem(p.getRoom().removeItem(command.substring(5)));
-				
-			}else
+			else if (command.equals("inspect")) {
+				System.out.println(p.inspect()); // inspect player
+			}
+			else if (command.length()>6 && command.substring(0,4).equals("take")){
+				p.addItem(p.getRoom().removeItem(command.substring(5,command.length())));
+			}
+			else
 			{
 				System.out.println("unknown command");
 			}

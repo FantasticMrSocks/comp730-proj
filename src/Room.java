@@ -27,15 +27,14 @@ public class Room {
 		hallways.put(direction, adjacentRoom);
 	}
 	// give a name of an item, remove that Item from the Inventory
-	public Inspectable removeItem(String n) {	
-		Inspectable temp = new Inspectable("No item", "No item");
+	public Inspectable removeItem(String n) {		
 		for(Inspectable item : this.inventory.getItems()) {
 			if(item.getName().equals(n)) {				
 				this.inventory.removeItem(item);
 				return item;
 			}
 		}
-		return temp;		
+		return null;				
 	}
 	
 	public Room getNextRoom(String direction) {
@@ -65,7 +64,7 @@ public class Room {
 	// Inspect the room and set the visited variable to true
 	public String inspect() {
 		visited = true;
-		String result = "Current room: " + name + "\n" + description;
+		String result = "Room: " + name + "\n" + description;
 		
 		for (Exit exit : exits) {
 			if (exit.visible) {
