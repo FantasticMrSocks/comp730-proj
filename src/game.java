@@ -92,6 +92,10 @@ public class game {
 		//monsters.get(0).setLocation(rooms.get(2).getLocation());
 		
 		rooms.get(0).addItem(new Inspectable ("Bread","a old bread")); // add a bread into the first room inventory
+		rooms.get(7).addItem(new Inspectable ("lettuce", "some green to eat")); // add lettuce into the garden inventory
+		rooms.get(3).addItem(new Inspectable ("pepper", "you always need pepper")); // add pepper into the kitchen inventory
+		rooms.get(5).addItem(new Inspectable ("salt", "don't add too much"));
+		rooms.get(9).addItem(new Inspectable ("turkey", "of the sliced variety"));
 		p.addItem(new Inspectable ("Apple","a deciduous fruit")); // add an Apple into player inventory
 		
 		p.setRoom(rooms.get(0));
