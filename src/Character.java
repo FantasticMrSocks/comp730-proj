@@ -53,16 +53,16 @@ public class Character {
 	public void initialInventory(){
 		inventory = new Inventory();
 	}
-	// add an item into the inventory
+	
+		// add an item into the inventory
 	public void addItem(Inspectable i){		
 		if( i !=null) {
 		inventory.addItem(i);
-		System.out.println("You added " + i.inspect() + " to your inventory.");
+		System.out.println("Add a " + i.inspect() + " to "+ this.getName()+ "'s inventory.");
 		}
 		else {
 			System.out.println("There are no item to add");
-		}
-			
+		}			
 	}
 	// add a List of item into the inventory
 	public void addItems(List<Inspectable> objects) {
@@ -74,7 +74,18 @@ public class Character {
 	public void removeItem(Inspectable i){
 		inventory.removeItem(i);
 	}
-	
+	// Drop all item into the current room
+	public void dropItems() {
+		if(this.inventory.size()>0) // check if there are any item in the inventory
+			{
+				for(Inspectable item : this.inventory.getItems()) 
+				{
+					System.out.println(this.getName()+ " drops a "+ item.getName());
+					this.getRoom().addItem(item);	// Drop all items into the room										
+				}	
+				this.initialInventory(); // Reset the inventory
+			}				
+		}
 	// This function will update the HP to the target character after being hit
 	public void attack(Character c) {
 		if (this.critical()==1) { // if the attack is critical

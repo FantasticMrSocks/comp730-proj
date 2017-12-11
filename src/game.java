@@ -61,37 +61,9 @@ public class game {
 		rooms.get(8).addInformation("Fire Escape", "This is the outside Fire Escape, we can climb up the ladder in front of us or go south back to the Garden");
 		rooms.get(9).addInformation("Fire Ladder", "This is the Fire Ladder, we can climb up and into the Auditorium or climb down to the bottom of the Fire Escape");
 
-		//int k =0;
-		//List<MyCoord> map = new ArrayList<MyCoord>(); // list of locations
-		//for (int i =0; i<maxWidth; i++) {
-		//	for (int j = 0; j<maxHeight; j++){
-		//		map.add(new MyCoord(i,j)); // Initialize 9 locations
-		//		rooms.add(new Room()); // Initialize for room 1 -9
-		//		rooms.get(k).setLocation(map.get(k)); // Set location for all the rooms
-		//		k++;
-		//	}
-		//}
 		
 		
-		//monsters.get(1).setLocation(map.get(0));// put a monkey into room #1
-		//monsters.get(0).setLocation(map.get(1));// put a spider into room #2
-		
-		// add information for room #1
-		//rooms.get(0).addInformation("Restroom","a bathroom in a public building");// add name and description to a room
-		//rooms.get(0).addItem(new Inspectable ("Key#1","an old silver key with number 1 on it")); // Key #1
-		
-		// add information for room #2
-		//rooms.get(1).addInformation("Normal room","A small room, there is an apple on the table \r\n" + 
-		//		"in the corner of the room.");// add name and description to a room
-		//rooms.get(1).addItem(new Inspectable ("Apple","a deciduous fruit")); // add an apple
-		
-		// add information for room #3
-		//rooms.get(2).addInformation("A small storage room", "It has spider web with some \r\n" + 
-		//				"mosquito corpses that were still hanging on the \r\n" + 
-		//				"wall. There's a spider on the ceiling directly above you. ");// add name and description to a room
-		//monsters.get(0).setLocation(rooms.get(2).getLocation());
-		
-		rooms.get(0).addItem(new Inspectable ("Bread","a old bread")); // add a bread into the first room inventory
+		rooms.get(0).addItem(new Inspectable ("Bread","an old bread")); // add a bread into the first room inventory
 		rooms.get(7).addItem(new Inspectable ("lettuce", "some green to eat")); // add lettuce into the garden inventory
 		rooms.get(3).addItem(new Inspectable ("pepper", "you always need pepper")); // add pepper into the kitchen inventory
 		rooms.get(5).addItem(new Inspectable ("salt", "don't add too much"));
@@ -100,9 +72,10 @@ public class game {
 		
 		p.setRoom(rooms.get(0));
 		System.out.println(p.inspect()); // inspect player
-		p.move("east");                   // player move to east
-		System.out.println(p.inspect());
-		
+		//p.move("east");                   // player move to east
+		//System.out.println(p.inspect());
+		monsters.get(0).setRoom(rooms.get(0));
+		monsters.get(0).addItem(new Inspectable ("Banana","an edible fruit")); // add an banana to the monkey
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command ;
@@ -114,13 +87,25 @@ public class game {
 				exit = true;
 			}
 			else if (command.toLowerCase().equals("battle")) { // "The Lord" attacks "Spider" 
-				
-				p.battle(findMonster(p,monsters));
-				System.out.println("Player has "+p.getHP()+ "Health");
-				//p.battle(monsters.get(0));
+				if (findMonster(p,monsters)!=null) 
+				{
+					p.battle(findMonster(p,monsters));
+					System.out.println("Player has "+p.getHP()+ "Health");
+					if (findMonster(p,monsters).getHP()<=0)
+					{
+						findMonster(p,monsters).dropItems();
+					}
+						
+				}
+				else 
+				{
+					System.out.println("There are no monsters in this room");
+				}
 			}
-			else if (command.toLowerCase().equals("search")) {
+			else if (command.toLowerCase().equals("search")) { 
 				System.out.println(p.getRoom().inspect());
+				if (findMonster(p,monsters)!=null && findMonster(p,monsters).getHP()>0) // Only display the monster if it is still alive
+					System.out.println(findMonster(p,monsters).inspect());				
 			}
 			else if (command.toLowerCase().equals("help")) {
 				help();
