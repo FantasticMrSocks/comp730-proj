@@ -26,7 +26,12 @@ public class Inventory {
 	// remove an Item at a specified position in this Inventory
 	public void removeItem(Inspectable i) {
 		inspectable.remove(i);
-
+	}
+	public boolean hasItem(String itemName) {
+		for (Inspectable i : inspectable) {
+			if (i.name.equals(itemName)) return true;
+		}
+		return false;
 	}
 	// return an item at specified position and then remove it from this Inventory
 	public Inspectable pickItem(int i) {
