@@ -103,11 +103,7 @@ public class game {
 		while (!exit) {
 			command = reader.nextLine();
 			
-			if (command.toLowerCase().equals("make sandwich")&&p.getRoom()==rooms.get(6)) {
-				System.out.println("Congratulation! You are winning the game!!!!!!!\n\n           --GAMEOVER--");
-				exit = true;
-			}
-			else if (command.toLowerCase().equals("help")) {
+			if (command.toLowerCase().equals("help")) {
 				help();
 			}
 			else if (command.toLowerCase().equals("battle")) { // "The Lord" attacks "Spider" 
@@ -138,8 +134,7 @@ public class game {
 				if (findItem(p, command.substring(8,command.length()))!= null)
 					System.out.println(findItem(p, command.substring(8,command.length())).inspect()); // inspect an Item command.substring(8,command.length()))
 				else
-					System.out.println("There is no item with that name"); 
-					
+					System.out.println("There is no item with that name");
 			}
 			else if (command.substring(0, 4).equals("move")) {
 				p.move(command.substring(4).trim());
@@ -160,7 +155,7 @@ public class game {
 						System.out.println("aw heck you done it");
 						break;
 					} else {
-						System.out.println("You tried to make a sandwich, but it seems like you're a little far away from your destination. It might go bad on the way there. Try getting to the auditorium first.");
+						System.out.println("You thought about making a sandwich, but it seems like you're a little far away from your destination. It might go bad on the way there. Try getting to the auditorium first.");
 					}
 				} else {
 					System.out.println("You try to make a sandwich with your current ingredients, but it looks a little... lacking. Try to look for some more!");
@@ -175,7 +170,7 @@ public class game {
 				}
 				else 
 				{
-					System.out.println("This item can't be use");
+					System.out.println("This item can't be used");
 				}				
 			}
 			else{
