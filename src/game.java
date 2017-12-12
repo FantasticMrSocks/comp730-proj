@@ -95,6 +95,10 @@ public class game {
 		monsters.get(2).addItem(items.get(7)); // add a raw meat to the dog
 		monsters.get(3).addItem(items.get(8)); // add mayo to the Slime
 		
+		System.out.println("It's a bad day at work. Your office is full of monsters, and the CEO is hungry.\nYou can solve at least one of these problems.");
+		System.out.println("Your task is to explore the building, collect some ingredients, bring them to the CEO, and make the sandwich.");
+		System.out.println("Do that, and you can go home for the night. Wouldn't that be nice?");
+		
 		boolean exit = false;
 		Scanner reader = new Scanner(System.in);
 		String command ;
@@ -152,7 +156,10 @@ public class game {
 			else if (command.equals("make sandwich")) {
 				if (p.inventory.hasItem("bread") && p.inventory.hasItem("lettuce") && p.inventory.hasItem("pepper") && p.inventory.hasItem("salt") && p.inventory.hasItem("turkey") && p.inventory.hasItem("mayo")){
 					if (p.currentRoom.equals(rooms.get(6))) {
-						System.out.println("aw heck you done it");
+						System.out.println("You make the sandwich. The CEO looks on. He nods approvingly.\nFinally, the sandwich is complete.");
+						System.out.println("As he takes the sandwich, you slip out through the exit that the slime was blocking.");
+						System.out.println("Sure, you still have the long commute home to look forward to, but at least you're leaving work.");
+						System.out.println("=== Congratulations! ===");
 						break;
 					} else {
 						System.out.println("You thought about making a sandwich, but it seems like you're a little far away from your destination. It might go bad on the way there. Try getting to the auditorium first.");
