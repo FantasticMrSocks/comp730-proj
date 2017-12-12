@@ -25,7 +25,8 @@ public class game {
 		items.add(new Inspectable ("turkey", "of the sliced variety"));
 		items.add(new Inspectable ("banana","an edible fruit"));
 		items.add(new Inspectable ("apple","a deciduous fruit"));		
-		items.add(new Inspectable ("meat","Raw meat can be cooked or eaten"));
+		items.add(new Inspectable ("sword","a long blade"));
+		items.add(new Inspectable ("letter","a handwritten letter"));
 
 		rooms.add(new Room());
 		rooms.add(new Room());
@@ -78,6 +79,7 @@ public class game {
 		rooms.get(3).addItem(items.get(2)); // add pepper into the kitchen inventory
 		rooms.get(5).addItem(items.get(3));
 		rooms.get(9).addItem(items.get(4));
+		rooms.get(4).addItem(items.get(8));
 		
 		p.setRoom(rooms.get(0)); // set the default room for player		
 		
@@ -157,7 +159,14 @@ public class game {
 					p.setHP(p.getHP()+ 30);
 					System.out.println("You restore 30 HP !!!");
 				}
-				else 
+				else if(i.equals("letter")) {
+					System.out.println("Dear player !!!\nThis building was cursed. You are the only one who can broke that spell. \nPlease reaches the Auditorium and type 'make sandwich'...");
+				}
+				else if(i.equals("sword")) {
+					p.setSTR(p.getSTR()+ 5);
+					System.out.println("Your streng is increase by 5 point !!!");
+				}
+				else
 				{
 					System.out.println("This item can't be use");
 				}				
@@ -194,17 +203,15 @@ public class game {
 		return null;
 	}
 	public static void help() {
-		System.out.println ("-Player enters a labyrinth. He/she needs to get out by finding and defeating the final boss.");
-		System.out.println ("-Player can move by inputing four movement commands: North (N), South (S), East (E), West (W). Each command can be abbreviated by a single letter.");
+		System.out.println ("-Player enters a labyrinth. He/she needs to reach the Auditorium and type 'make sandwich'.");
+		System.out.println ("-Player can move by inputing four movement commands: move north, south, east, west");
 		System.out.println ("-Player can pick up an item with key word 'take' or 'pick'+ item's name");
 		System.out.println ("-Player can use an item in his/her inventory with key word 'use' + item's name");
 		System.out.println ("-Player can Inspect an item with the key word 'inspect' + item's name");
 		System.out.println ("-Player can inspect the current location with the key word 'search'");
-		System.out.println ("-Player can tracks his/her current location with the key word '???'");
-		System.out.println ("-Player can check his/her inventory with the key word '???'");
-		System.out.println ("-Player can request help with the key word 'help' ");
-		System.out.println ("-Some of the rooms are required specific keys to unlock. ");
-		System.out.println ("-If a player enter a room which has a monster; he/she will enter a FIGHT.");
+		System.out.println ("-Player can check his/her inventory with the key word 'inspect'");
+		System.out.println ("-Player can request help with the key word 'help'");
+		System.out.println ("-If a player enter a room which has a monster.\nHe/She can fight the monster with the command 'battle'.");
 		System.out.println ("-If the player gets killed by a monster, he/she will be move to the starting point.");
 		System.out.println ("-Player can increase his/her strength by pick up a weapon.");
 	}
