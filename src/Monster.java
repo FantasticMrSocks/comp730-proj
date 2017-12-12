@@ -8,4 +8,14 @@ public class Monster extends Character{
 		this.setCrit(c);
 		initialInventory();
 	}
+
+	// Inspect the monster
+		public String inspect() {		
+			String result = "There is a: " + this.getName() + "\nHealth: " +this.getHP() + "\nStrength: "+ this.getSTR() + "\nCritical ratio: "+ this.getCrit()+"\nIn this room." ;				
+			for (Inspectable i : inventory.getItems()) {
+				result = result.concat("\nIt has: \n" + i.inspect());
+			}
+			return result;
+		}
+	
 }

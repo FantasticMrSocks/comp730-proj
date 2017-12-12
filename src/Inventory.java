@@ -45,6 +45,9 @@ public class Inventory {
 		Inspectable item = inspectable.get(i);
 		inspectable.remove(i);
 		return item;
-	}		
+	}	
+	public int size() {
+		return inspectable.size();
+	}
 
 }
