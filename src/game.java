@@ -94,12 +94,11 @@ public class game {
 					if (findMonster(p,monsters).getHP()<=0)
 					{
 						findMonster(p,monsters).dropItems();
-					}
-						
+					}						
 				}
 				else 
 				{
-					System.out.println("There are no monsters in this room");
+					System.out.println("There is no monster in this room");
 				}
 			}
 			else if (command.toLowerCase().equals("search")) { 
@@ -110,13 +109,21 @@ public class game {
 			else if (command.toLowerCase().equals("help")) {
 				help();
 			}
+			else if (command.length()> 8 && command.substring(0,7).equals("inspect")) 
+			{
+				if (findItem(p, command.substring(8,command.length()))!= null)
+					System.out.println(findItem(p, command.substring(8,command.length())).inspect()); // inspect an Item command.substring(8,command.length()))
+				else
+					System.out.println("There is no item with that name"); 
+					
+			}
 			else if (command.substring(0, 4).equals("move")) {
 				p.move(command.substring(4).trim());
 			}
 			else if (command.equals("inspect")) {
 				System.out.println(p.inspect()); // inspect player
 			}
-			else if (command.length()>6 && command.substring(0,4).equals("take")){
+			else if (command.length()>6 && (command.substring(0,4).equals("take")||command.substring(0,4).equals("pick"))){
 				p.addItem(p.getRoom().removeItem(command.substring(5,command.length())));
 			}
 			else if(command.toLowerCase().equals("inspect"))
@@ -134,6 +141,21 @@ public class game {
 		for(Monster m : monsters) {
 			if (p.getRoom()==m.getRoom()) {
 				return m;
+			}
+		}
+		return null;
+	}
+	public static Inspectable findItem(Player p, String s) {	
+		// compare the name of item with all item in player's inventory
+		for(Inspectable i : p.getInventory().getItems()) { // compare the name of item with all item in player's inventory
+			if (i.getName().equals(s)) {
+				return i;
+			}
+		}
+		// compare the name of item with all item in the current room's inventory
+		for(Inspectable j : p.getRoom().getInventory().getItems()) {
+			if (j.getName().equals(s)) {
+				return j;
 			}
 		}
 		return null;

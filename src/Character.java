@@ -22,10 +22,13 @@ public class Character {
 	public void setRoom(Room r) {
 		currentRoom =r;
 	}
+	
 	public Room getRoom() {
 		return currentRoom;
 	}
-	
+	public Inventory getInventory() {
+		return inventory;
+	}
 	public int getHP(){
 		return hp;
 	}

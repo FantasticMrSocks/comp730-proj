@@ -52,12 +52,16 @@ public class Room {
 			inventory.addItem(newObject);
 		}
 	}
+	
 	// Add name and description for a room
 	public void addInformation(String n, String d) {
 		name = n;
 		description = d;		
 	}
 	
+	public Inventory getInventory() {
+		return inventory;
+	}
 	// Inspect the room and set the visited variable to true
 	public String inspect() {
 		visited = true;
